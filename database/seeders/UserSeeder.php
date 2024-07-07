@@ -46,7 +46,7 @@ class UserSeeder extends Seeder
 
     public function demoUsers(): void
     {
-        if (!config('app.demo_mode', false)) {
+        if (app()->isProduction() || !config('app.demo_mode', false)) {
             return;
         }
 
@@ -64,6 +64,10 @@ class UserSeeder extends Seeder
 
     public function fakeUsers(?int $count = null): void
     {
+        if (app()->isProduction()) {
+            return;
+        }
+
         User::factory($count ?? 4)->create();
     }
 
