@@ -7,6 +7,8 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import PrimeVue from 'primevue/config';
 import LaraCustom from '@/primevue/presets/LaraCustom'; //import preset
+import ToastService from 'primevue/toastservice';
+import lara from '@primevue/themes/lara';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -19,9 +21,14 @@ createInertiaApp({
             .use(ZiggyVue)
             .use(PrimeVue, {
                 unstyled: true,/*
-                unstyled: false, /**/
-                pt: LaraCustom, //apply preset
+                // unstyled: false, /**/
+                // pt: LaraCustom, //apply preset
+                pt: {
+                    ...lara,
+                    ...LaraCustom,
+                }, //apply preset
             })
+            .use(ToastService)
             .mount(el);
     },
     progress: {

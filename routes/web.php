@@ -24,7 +24,7 @@ require __DIR__ . '/auth.php';
 
 // Route::redirect('dashboard', 'admin.dashboard')->name('dashboard');
 
-Route::middleware('auth')
+Route::middleware(['auth', 'verified'])
     ->prefix('admin')
     ->name('admin.')
     ->group(__DIR__ . '/admin.php');

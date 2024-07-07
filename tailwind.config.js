@@ -10,6 +10,8 @@ export default {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.vue',
         './resources/js/**/*.{vue,js,ts,jsx,tsx,html}',
+        './node_modules/@primevue/themes/**/*.{vue,js,ts,jsx,tsx,mjs,html}',
+        './resources/js/primevue/presets/**/*.{vue,js,ts,jsx,tsx,mjs,html}',
     ],
 
     theme: {

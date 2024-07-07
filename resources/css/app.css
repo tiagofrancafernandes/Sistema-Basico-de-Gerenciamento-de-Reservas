@@ -1,5 +1,6 @@
 /* @import "../js/primevue/css/pv-styles.css"; */
 @import "@/primevue/css/pv-styles.css";
+@import 'primeicons/primeicons.css';
 
 @tailwind base;
 @tailwind components;
