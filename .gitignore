@@ -25,3 +25,4 @@ yarn-error.log
 *.bkp
 *.log
 *.out
+_ide*.php
