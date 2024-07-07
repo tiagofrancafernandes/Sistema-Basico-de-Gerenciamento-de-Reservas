@@ -9,6 +9,9 @@ defineProps({
     mustVerifyEmail: {
         type: Boolean,
     },
+    canUpdateSelfEmail: {
+        type: Boolean,
+    },
     status: {
         type: String,
     },
@@ -53,6 +56,7 @@ const form = useForm({
                 <InputLabel for="email" value="Email" />
 
                 <TextInput
+                    v-if="canUpdateSelfEmail"
                     id="email"
                     type="email"
                     class="mt-1 block w-full"
@@ -62,6 +66,11 @@ const form = useForm({
                 />
 
                 <InputError class="mt-2" :message="form.errors.email" />
+
+                <div
+                    v-if="!canUpdateSelfEmail"
+                    class="mt-1 bg-gray-100 border border-gray-300 text-gray-900 text-sm rounded-md focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 cursor-not-allowed dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400 dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                >{{ user.email }}</div>
             </div>
 
             <div v-if="mustVerifyEmail && user.email_verified_at === null">
