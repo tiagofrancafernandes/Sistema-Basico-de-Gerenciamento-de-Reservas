@@ -1,7 +1,8 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { toastIt } from '@/primevue/helpers/prime-toast';
 // import { CustomerService } from '@/service/CustomerService';
 
 const CRUDService = {
@@ -34,6 +35,11 @@ onMounted(() => {
     };
 
     loadLazyData();
+    // toastIt('abc', 'info', -1); // No auto close
+    // PrimeToast.info('abc', -1); // No auto close
+    // PrimeToast.info('abc', 5000); // Will auto close in 5 seconds
+    // PrimeToast.toast('abc');
+    toastIt('teste toastIt');
 });
 
 const dt = ref();
@@ -76,10 +82,19 @@ const loadLazyData = (event) => {
             loading.value = false;
         });
 };
+
+const uncheckAllSelectedRows = (options = null) => {
+    selectedCustomers.value = [];
+    selectAll.value = false;
+}
+
 const onPage = (event) => {
+    console.log('onPage', event);
+    uncheckAllSelectedRows(); // Desmarca linhas previamente selecionadas
     lazyParams.value = event;
     loadLazyData(event);
 };
+
 const onSort = (event) => {
     lazyParams.value = event;
     loadLazyData(event);
@@ -103,29 +118,48 @@ const onSelectAllChange = (event) => {
         selectedCustomers.value = [];
     }
 };
+
 const onRowSelect = () => {
     selectAll.value = selectedCustomers.value.length === totalRecords.value;
+    toastIt('selected a raw', 'info', 5000);
 };
 const onRowUnselect = () => {
     selectAll.value = false;
+    toastIt('unselected a raw', 'info', 5000);
 };
 
+let pageInfo = computed(() => ({
+    pageTitle: 'Guests',
+    headerTitle: 'Guests',
+}))
 </script>
 
 <template>
-    <Head title="Dashboard" />
+    <Head :title="pageInfo.pageTitle" />
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">Dashboard</h2>
+            <h2
+                class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight"
+            >{{ pageInfo.headerTitle }}</h2>
         </template>
 
         <div class="py-4">
             <div class="card p-fluid">
-                <DataTable :value="customers" lazy paginator :first="first" :rows="10" v-model:filters="filters" ref="dt" dataKey="id"
-                    :totalRecords="totalRecords" :loading="loading" @page="onPage($event)" @sort="onSort($event)" @filter="onFilter($event)" filterDisplay="row"
+                <DataTable
+                    :value="customers" lazy paginator
+                    :first="first"
+                    :rows="10" v-model:filters="filters" ref="dt" dataKey="id"
+                    :totalRecords="totalRecords"
+                    :loading="loading" @page="onPage($event)" @sort="onSort($event)" @filter="onFilter($event)" filterDisplay="row"
                     :globalFilterFields="['name','country.name', 'company', 'representative.name']"
-                    v-model:selection="selectedCustomers" :selectAll="selectAll" @select-all-change="onSelectAllChange" @row-select="onRowSelect" @row-unselect="onRowUnselect" tableStyle="min-width: 75rem">
+                    v-model:selection="selectedCustomers"
+                    :selectAll="selectAll"
+                    @select-all-change="onSelectAllChange"
+                    @row-select="onRowSelect"
+                    @row-unselect="onRowUnselect"
+                    tableStyle="min-width: 75rem"
+                >
                     <Column selectionMode="multiple" headerStyle="width: 3rem"></Column>
                     <Column field="name" header="Name" filterMatchMode="startsWith" sortable>
                         <template #filter="{filterModel,filterCallback}">

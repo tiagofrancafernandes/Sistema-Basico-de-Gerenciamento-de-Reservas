@@ -8,7 +8,8 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import PrimeVue from 'primevue/config';
 import LaraCustom from '@/primevue/presets/LaraCustom'; //import preset
 import ToastService from 'primevue/toastservice';
-import lara from '@primevue/themes/lara';
+import Lara from '@primevue/themes/lara';
+import Aura from '@primevue/themes/aura';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
@@ -20,13 +21,22 @@ createInertiaApp({
             .use(plugin)
             .use(ZiggyVue)
             .use(PrimeVue, {
-                unstyled: true,/*
+                // unstyled: true,/*
                 // unstyled: false, /**/
                 // pt: LaraCustom, //apply preset
-                pt: {
-                    ...lara,
-                    ...LaraCustom,
-                }, //apply preset
+                // pt: {
+                //     ...Lara,
+                //     ...LaraCustom,
+                // }, //apply preset
+
+                theme: {
+                    // preset: Aura,
+                    preset: Lara,
+                    // preset: {
+                    //     ...Lara,
+                    //     ...LaraCustom,
+                    // },
+                }
             })
             .use(ToastService)
             .mount(el);

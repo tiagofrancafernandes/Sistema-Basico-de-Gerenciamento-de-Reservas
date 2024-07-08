@@ -3,6 +3,9 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
 import { ref } from "vue";
 import { useToast } from "primevue/usetoast";
+
+import DashboardStats from "@/Pages/FakeStats.vue";
+
 const toast = useToast();
 
 const date = ref();
@@ -27,6 +30,10 @@ const show = () => {
 
             <Button label="Show" @click="show()" />
         </div>
+
+        <div class="bg-cyan-100">aaa</div>
+
+        <DashboardStats/>
 
         <div class="py-4">
             <div class="w-full max-w-full mx-auto sm:px-4 lg:px-6">

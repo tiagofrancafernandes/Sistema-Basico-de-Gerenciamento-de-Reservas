@@ -8,6 +8,8 @@ export default {
         './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
         './storage/framework/views/*.php',
         './resources/views/**/*.blade.php',
+        './resources/js/**/*.{vue,js,ts,jsx,tsx}',
+        './resources/js/*/.{vue,js,ts,jsx,tsx}',
         './resources/js/**/*.vue',
         './resources/js/**/*.{vue,js,ts,jsx,tsx,html}',
         './node_modules/@primevue/themes/**/*.{vue,js,ts,jsx,tsx,mjs,html}',
@@ -20,7 +22,7 @@ export default {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
             colors: {
-                primary: 'rgb(var(--primary))',
+                'primary': 'rgb(var(--primary))',
                 'primary-inverse': 'rgb(var(--primary-inverse))',
                 'primary-hover': 'rgb(var(--primary-hover))',
                 'primary-active-color': 'rgb(var(--primary-active-color))',

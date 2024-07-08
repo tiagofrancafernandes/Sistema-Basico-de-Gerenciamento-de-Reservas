@@ -1,3 +1,5 @@
+@import 'primeicons/primeicons.css';
+
 :root {
     /* font-family: 'Inter var', sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
@@ -54,20 +56,25 @@
     --body-bg: rgb(var(--surface-50));
     --body-text-color: rgb(var(--surface-900));
     --card-border: 1px solid var(--border-color);
-    --card-bg: rgb(var(--surface-0));
     --border-color: rgb(var(--surface-200));
+
+    --card-bg: rgb(var(--surface-0));
+    --card-bg-tw: rgb(255 255 255 / var(--tw-bg-opacity)); /* bg-white */
 }
 
 :root[class='dark'] {
     --body-bg: rgb(var(--surface-950));
     --body-text-color: rgb(var(--surface-50));
     --card-border: 1px solid transparent;
-    --card-bg: rgb(var(--surface-900));
     --border-color: rgba(255, 255, 255, 0.1);
+
+    --card-bg: rgb(var(--surface-900));
+    --card-bg-tw: rgb(31 41 55 / var(--tw-bg-opacity)); /* dark:bg-gray-800 */
 }
 
 .card {
-    background: var(--card-bg);
+    /* background: var(--card-bg); */
+    background-color: var(--card-bg-tw);
     border: var(--card-border);
     padding: 2rem;
     border-radius: 10px;

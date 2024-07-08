@@ -30,7 +30,10 @@ export default defineConfig({
     resolve: {
         alias: {
             '@': fileURLToPath(new URL('./resources/js', import.meta.url)),
+            '@resources': fileURLToPath(new URL('./resources', import.meta.url)),
             '@base': fileURLToPath(new URL('./', import.meta.url)),
+            '@nm': fileURLToPath(new URL('./node_modules', import.meta.url)),
+            '@node_modules': fileURLToPath(new URL('./node_modules', import.meta.url)),
             '@asset': fileURLToPath(new URL('./public', import.meta.url)),
             '@public': fileURLToPath(new URL('./public', import.meta.url)),
         }

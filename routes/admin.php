@@ -6,4 +6,4 @@ use Inertia\Inertia;
 
 Route::get('/dashboard', fn () => Inertia::render('Dashboard'))->name('dashboard');
 
-Route::resource('guest', GuestController::class);
+Route::resource('guests', GuestController::class);
